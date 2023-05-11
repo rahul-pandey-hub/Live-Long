@@ -1,0 +1,146 @@
+{% extends 'index.html' %} {% load static %} {% block content %}
+
+
+<!-- END nav -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/patient">Live<span>Long</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+    </button>
+ 
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/patient  " class="nav-link">Home</a></li>
+
+        
+        
+        <li class="nav-item" ><a href="doc" class="nav-link">Doctors</a></li>
+        <li class="nav-item"><a href="/User_profile" class="nav-link icon-user"><br><span>Profile</span></a></li>
+        <li class="nav-item"><a href="/my-orders" class="nav-link">My orders</a></li>
+        <li class="nav-item"><a href="/cart" class="nav-link icon-shopping-cart" class="nav-link"></a></li>
+        <li class="nav-item cta"><a href="/appointment" class="nav-link"><span> Join Appointment</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="home-slider owl-carousel">
+  <div
+    class="slider-item bread-item"
+    style="background-image: url({% static 'images/bg_1.jpg'%});"
+    data-stellar-background-ratio="0.5"
+  >
+    <div class="overlay"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <form action="" >
+            <div class="input-group">
+              <div class="form-outline">
+                <style>
+                  .form-control1 {
+                    display: block;
+                    width: 100%;
+                    padding: 0.375rem 0.75rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    color: #495057;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #ced4da;
+                    border-radius: 0.25rem;
+                    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                }
+                </style>
+                <input type="search" name="q" placeholder="search" id="form1" class="form-control1" value="{{request.GET.q}}" />
+                
+              </div>
+              <button type="submit" class="btn btn-primary">
+               
+                <i class="icon-search"></i>
+              </button>
+            </div>
+          </form>
+          <h1
+            class="mb-3"
+            data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+          >
+            Best medicene product 
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate">
+        <h2 class="mb-3">Medicine section</h2>
+     
+      </div>
+    </div>
+    
+    <div class="row">
+      {%for i in object_list %}
+      <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+        <div class="staff">
+          <div class="img mb-4">
+          
+          {% if i.product_image %}
+          <img class="img mb-4" src="/media/{{i.product_image}}" alt="" height="150" width="150" >
+          {% else %}
+          <img class="img mb-4" src="{% static 'images/doc.png'%}" height="150" width="150">
+          {% endif %}
+        </div>
+          <div class="info text-center">
+            <h3>{{i.title}}</h3>
+            
+            <div class="text">
+              
+              <a href="{% url 'productDetailsViewPage' productCat.id prodSubCat.id i.id %}" class="link-btn">See Product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <h2>No item category found for "{{request.GET.q}}"! <br><br>
+          Suggestions : <br><br>
+          <ul style="line-height: 1.5;">
+              <li>Make sure that your word are correct!</li>
+              <li>Refine your search!</li>
+              <li>Try other keywords!</li>
+          </ul>
+      </h2>
+      {%endfor%}
+    </div>
+  </div>
+</section>
+
+<div style="padding-bottom:0.5vi;">
+<section
+  class="ftco-section ftco-counter img"
+  id="section-counter"
+   style="background-image: url({% static 'images/b2.jpg' %});"
+  data-stellar-background-ratio="0.5"
+>
+
+  
+  
+</section>
+</div>
+
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+  <div class="container" style="display: flex;
+  justify-content: center;">
+    <div>
+      @LIVELONG ALL RIGHTS RESERVED 
+      
+  </div>
+</footer>
+{% endblock content %}

@@ -1,0 +1,145 @@
+
+{% extends 'index3.html' %}
+{% load static %}
+{% block content2 %}
+    
+  <!-- END nav -->
+ 
+  
+</style>
+  <section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url({% static 'images/bg_1.jpg'%});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text align-items-center" data-scrollax-parent="true">
+          <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            {% if a.image %}
+            <img id="a" src="{{a.image}}" alt="" height="150" width="150" style="border-radius: 5%;">
+            {% else %}
+            <img id="a" src="{% static 'images/doc.png'%}" height="150" width="150">
+            {% endif %}
+            <h3 class="mb-4 pl-4"  data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Dr. {{a.first_name}} {{a.last_name}}</h3>
+            <p class="mb-4">This website will help you for taking online appoitment with patient.</p>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="/doc_profile" class="btn btn-primary px-4 py-3">view profile</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-item" style="background-image: url({% static 'images/bg_2.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text align-items-center" data-scrollax-parent="true">
+          <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            {% if a.image %}
+            <img id="a" src="{{a.image}}" alt="" height="150" width="150" style="border-radius: 5%;">
+            {% else %}
+            <img id="a" src="{% static 'images/doc.png'%}" height="150" width="150">
+            {% endif %}
+            <h3 class="mb-4 pl-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Dr. {{a.first_name}} {{a.last_name}}</h3>
+            <p class="mb-4">This website will help you for taking online appoitment with patient</p>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="/doc_profile" class="btn btn-primary px-4 py-3">view profile</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%if b%}
+  <section class="ftco-intro">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-3 color-1 p-4">
+          <img  src="{% static 'images/doc.png'%}" height="150" width="150">
+                  
+         </div>
+              <div class="col-md-3 color-2 p-4">
+                  <h3 class="mb-4">Appointment Time</h3>
+                  {%for i in b %}
+                  {% if i.doctor_remove == 0%}
+                  <p class="openinghours d-flex">
+                      <span>{{i.time}}</span><span>{{i.appointment_Date}}</span>
+                  </p>
+                  {%endif%}
+                  {%endfor%}
+              </div>
+              <div class="col-md-6 color-3 p-4">
+                <p class="openinghours d-flex">
+                      
+                  <span style="font-size:20px">Patients</span> 
+                  <span style="font-size:20px">phone number</span>
+                  <span style="font-size:20px" >Appointment Id</span>  
+                  
+                  
+              </p>
+                  {%for i in b %}
+                  {% if i.doctor_remove == 0%}
+                  <p class="openinghours d-flex">
+                      
+                    <span>{{i.patient_name}}</span><span>{{i.phone_patient}}</span><span>{{i.id}}</span>
+                </p>
+                {%endif%}
+                {%endfor%}
+              </div>
+          </div>
+      </div>
+      
+  </section>
+  {%else%}
+  <section class="ftco-intro">
+    <div class="container">
+      <div class="row no-gutters" style="display:flex;justify-content:center">
+        <div class="col-md-3 color-1 p-4">
+          <div style="display:flex;justify-content:center">
+            <div style="    display: flex;
+            flex-direction: column;
+            
+            align-items: center;
+        ">
+         
+        <img id="a" src="{% static 'images/doc.png'%}" height="150" width="150">
+        <span ><h3>LIVELONG</h3>
+        </span>
+                  
+          </div> 
+        </div>  
+          
+  
+  </section>
+
+  {%endif%}
+
+  <section class="ftco-section testimony-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+          <h2 class="mb-2">Testimony</h2>
+          <span class="subheading">Our Happy Customer Says</span>
+        </div>
+      </div>
+      <div class="row justify-content-center ftco-animate">
+        <div class="col-md-8">
+          <div class="carousel-testimony owl-carousel ftco-owl">
+            <div class="item">
+              <div class="testimony-wrap p-4 pb-5">
+                <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text text-center">
+                  <p class="mb-5">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  <p class="name">Dennis Green</p>
+                  <span class="position">Marketing Manager</span>
+                </div>
+              </div>
+            </div>
+              </section>
+      
+  <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container" style="display: flex;
+    justify-content: center;">
+      <div>
+        @LIVELONG ALL RIGHTS RESERVED 
+        
+    </div>
+  </footer>
+    {% endblock content2 %}

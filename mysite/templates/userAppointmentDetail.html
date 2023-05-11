@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+  {% load static %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="/">Live<span>Long</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="/patient  " class="nav-link">Home</a></li>
+              <li class="nav-item" ><a href="/doc" class="nav-link">Doctors</a></li>
+              <li class="nav-item"><a href="/User_profile" class="nav-link icon-user"><br><span>Profile</span></a></li>
+              <li class="nav-item"><a href="/cart" class="nav-link icon-shopping-cart" class="nav-link"></a></li>
+              <li class="nav-item cta  text-dark"><a href="appointment" class="nav-link"><span class="text-dark"> Join Appointment</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="home-slider owl-carousel">
+        <div
+          class="slider-item bread-item"
+          style="background-image: url({% static 'images/bg_1.jpg'%});"
+          data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container" data-scrollax-parent="true">
+            <div class="row slider-text align-items-end">
+              <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                <p
+                  class="breadcrumbs"
+                  data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"
+                >
+                  <span class="mr-2"><a href="/patient">Home</a></span>
+                  <span>Services</span>
+                </p>
+                <h1
+                  class="mb-3"
+                  data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+                >
+                  Product Detail section
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- header section end -->
+<section>   
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h1 class="mb-0">Order View
+                            <a href="{% url 'my-orders' %}" class="btn btn-warning float-right text-white" style="font-weight: bolder; font-size: 1.5rem;"><i class="fa fa-reply"></i> Back</a>
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                       <div class="row">
+                            <div class="col-md-6">
+                                <h3>Shippng Details</h3>
+                                <hr>
+                                <label class="mt-2" style="font-weight: bolder; font-size: 1.5rem;">First Name</label>
+                                <div class="border p-1" style="font-weight: 500; font-size: 1.5rem;">
+                                    {{userOrderData.doc_name}}
+                                </div>
+                                
+                                <label class="mt-2" style="font-weight: bolder; font-size: 1.5rem;">Email</label>
+                                <div class="border p-1" style="font-weight: 500; font-size: 1.5rem;">
+                                    {{userOrderData.emaildoc}}
+                                </div>
+                                <label class="mt-2" style="font-weight: bolder; font-size: 1.5rem;">Mobile</label>
+                                <div class="border p-1" style="font-weight: 500; font-size: 1.5rem;">
+                                    {{userOrderData.phone_doc}}
+                                </div>
+                                <label class="mt-2" style="font-weight: bolder; font-size: 1.5rem;">Time</label>
+                                <div class="border p-1" style="font-weight: 500; font-size: 1.5rem;">
+                                    {{userOrderData.appointment_time}}
+                                </div>
+                                <label class="mt-2" style="font-weight: bolder; font-size: 1.5rem;">Date</label>
+                                <div class="border p-1" style="font-weight: 500; font-size: 1.5rem;">
+                                    {{userOrderData.appointment_Date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>DOCTOR DETAIL</h3>
+                                <hr>
+                                <div style="display:flex; justify-content:center">
+                                    <div>
+                                      {% if image %}
+                                      <img id="a" src="{{image}}" alt="" height="150" width="150" style="border-radius: 5%;">
+                                      {% else %}
+                                      <img id="a" src="{% static 'images/doc.png'%}" height="150" width="150">
+                                      {% endif %}
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
+                                <br>
+                                <h4 class="mb-3"> Grand Total :
+                                     <span class="float-right"> {{userOrderData.price}}</span>
+                                </h4>
+                                <h5 class="border p-2" style="font-weight: 500; font-size: 1.5rem;">Payment Mode : COD</h5>
+                                <h5 class="border p-2" style="font-weight: 500; font-size: 1.5rem;">Appointment ID : {{userOrderData.id}}</h5>
+                                {%if userOrderData.time == 1 %}
+                                <h5 class="border p-2" style="font-weight: 500; font-size: 1.5rem;">FOR : {{userOrderData.time}} hr</h5>
+                                {%else%}
+                                <h5 class="border p-2" style="font-weight: 500; font-size: 1.5rem;">FOR : {{userOrderData.time}} Min</h5>
+                                {%endif%}
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

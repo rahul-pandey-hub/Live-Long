@@ -1,0 +1,246 @@
+{% load static %}
+<!doctype html>
+ <html>
+ <head>
+     <meta charset='utf-8'>
+     <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <title>LIVE-LONG</title>
+     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/reg.css' %}">                    
+     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+     <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+  </head>
+  <body class='snippet-body' id="b1">
+  <div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="{%static 'images/doc.png' %}" alt="" height="200" width="200"/>
+            <h3>Welcome To</h3>
+            <h4>Live <b>Long!</b></h4><br/>
+            <h6>Already Have An Account?</h6>
+            <a href="login" id="a1">Login</a>
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Patient</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Doctor</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form action="/reg1" method="post" onsubmit="return myfun()">
+                    <h3 class="register-heading">Apply as a Patient</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <style>
+                                .error{
+                                    display: none;
+                                }
+                                .form-group{
+                                    display:flex;
+                                    align-items:center
+                                }
+                                .newerror{
+                                    display: block;
+                                }
+                            </style>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" name="fname" value="" required  />
+                                
+                               
+                            
+                        </div>
+                            <div class="form-group">
+                                <input type="text" id='1' class="form-control" placeholder="Last Name *" name="lname" value="" required  />
+                               
+                            </div>
+                            <div class="form-group">
+                                <input type="password"  id="password" class="form-control" placeholder="Password *" value="" name="pass" minlength="6" required />
+                               
+                            </div>
+                            <div class="form-group">
+                                <input type="password"   id="cpassword" class="form-control" placeholder="Confirm Password *" value="" minlength="6" required />
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline">
+                                        <input type="radio" name="gender" value="male"required>
+                                        <span> Male </span>
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" name="gender" value="female"required>
+                                        <span>Female </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email *" name="email" value="" required/>
+                               
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10"  class="form-control" placeholder="Your Phone *"name="phone" value="" required/>
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="age" class="form-control" placeholder="Enter Your Age *" value=""required />
+                                
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="select" required>
+                                    <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                            </div>
+                            <div class="form-group" name="ans">
+                                <input type="text" class="form-control" name="ans" placeholder="Enter Your Answer *" value=""  required/>
+                            </div>
+                            
+                            <input type="submit" class="btnRegister" value="Register" />
+                            
+                        </div>
+                        <a id="pass" style="color: red; font-size: 16px; padding-left: 5px; display: none;">You enter wrong password</a>
+                        {%if messages%}
+                        {%for message in messages %}
+                <a style="color: red; font-size: 16px; padding-left: 5px;">{{message}}</a>
+                {% endfor %}
+                {%endif%}
+                    </div>
+                </form>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form action="/reg2" method="post" onsubmit="return myfun()">
+                    <h3 class="register-heading">Apply as a Doctor</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" value="" name="fname" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name *" value="" name="lname" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email *" value="" name="email" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea type="text"  rows="2" cols="100" class="form-control" placeholder="Address *" value="" name="address"  required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="que" required>
+                                    <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                            </div>
+                            <div class="form-group" name="ans">
+                                <input type="text" class="form-control" name="ans" placeholder="Enter Your Answer *" value=""  required/>
+                            </div>
+
+                            
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" id="password" class="form-control" placeholder="Password *" value="" name="passw" minlength="6" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="cpassword"class="form-control" placeholder="Confirm Password *" value="" minlength="6" required />
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="select" required>
+                                    <option class="hidden" value="" selected disabled>Select Specialization</option>
+                                        <option >Anaesthesia</option>
+                                        <option >Andrology</option>
+                                        <option >Audiology &amp; Speech Therapy</option>
+                                        <option >Ayurvedic</option>
+                                        <option >Cardiologist</option>
+                                        <option >Dentist</option>
+                                        <option >Dermatologist</option>
+                                        <option >Diabetologist</option>
+                                        <option >Dietician</option>
+                                        <option >Endocrinologist</option>
+                                        <option >ENT</option>
+                                        <option >Gastroenterologist</option>
+                                        <option >Gynaecologist</option>
+                                        <option >Haematology</option>
+                                        <option >Homoeopathy</option>
+                                        <option >Medicine</option>
+                                        <option >Nephrologist</option>
+                                        <option >Neurologist</option>
+                                        <option >Neurosurgeon</option>
+                                        <option >Nutritionist</option>
+                                        <option >Ophthalmologist</option>
+                                        <option >Paediatrics</option>
+                                        <option >Pathologist</option>
+                                        <option >Pediatric Cardiac Surgeon</option>
+                                        <option >Physiotherapist</option>
+                                        <option >Plastic Surgery</option>
+                                        <option >Psychiatrist</option>
+                                        <option >Pulmonary Medicine</option>
+                                        <option >Radiologist</option>
+                                        <option >Rheumatologist</option>
+                                        <option >Sexologist</option>
+                                        <option >Skin</option>
+                                        <option >Somnologist</option>
+                                        <option >Surgeon</option>
+                                        <option >Urologist</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" maxlength="10" minlength="10" placeholder="Phone *" name="phone" value="" required/>
+                            </div>
+                           
+                            <div class="maxl">
+                                <label class="radio inline">
+                                    <input type="radio" name="gender" value="male"required>
+                                    <span> Male </span>
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" name="gender" value="female"required>
+                                    <span>Female </span>
+                                </label>
+                            </div>
+                           
+                            <input type="submit" class="btnRegister" value="Register" />
+                        </div>
+                        <a id="pass" style="color: red; font-size: 16px; padding-left: 5px; display: none;">You enter wrong password</a>
+                        {% if messages %}
+                {%for message in messages %}
+                <a style="color: red; font-size: 16px; padding-left: 5px;">{{message}}</a>
+                {% endfor %}
+                {%endif%}
+                    </div>
+                </form>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+      <script type='text/javascript'>
+        function myfun(){
+           if(document.getElementById('password').value != document.getElementById('cpassword').value){
+            document.getElementById('pass').style.display="block";
+            return false
+           }
+           else{
+            return true
+           }
+
+        }
+    
+      </script>
+      </body>
+ </html>

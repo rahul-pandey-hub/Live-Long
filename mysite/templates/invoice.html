@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Invoice</title>
+
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2"><center><img src="http://localhost:8000/static/images/doc.png" class="center" alt="not" width="100" height="100"></center></td>
+    
+  </tr>
+  <tr>
+    <td colspan="2"><center><span><strong>LIVE LONG</strong></span></center></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="49%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Invoice Receipt</td>
+          </tr>
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">Invoice Number: {{data.order.idorder}}</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Service Provider </td>
+          </tr>
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:400; font-size:14px;">Live Long!</td>
+         
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          </table></td>
+      </tr>
+    </table></td>
+    <td width="51%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="right"><img src="\images\Logo.jpeg" alt="" width="150"  /></td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" align="right"></td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;"  align="right">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;"  align="right">Order Date :{{data.order.order_date}}</td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;" align="right">Customer Name</td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" align="right">{{data.order.orderfname}} &nbsp; {{data.order.orderlname}}</td>
+      </tr>
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" align="right">{{data.order.order_delivery_address}}</td>
+      </tr>
+
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><table width="150%" height="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="34%" height="32" align="center">Product Image</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="34%" height="32" align="center">Product Name</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" width="34%" height="32" align="center">Offer</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="30%" align="center">Price</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="30%" align="center">Qty</td>
+        
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="30%" align="center">Total amount</td>
+      </tr>
+      {% for item in data.orderDetails %}
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" align="center"><img src="http://localhost:8000{{item.product_idProduct.product_image.url}}" style="height:80px; width:80px;"></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{item.product_idProduct.title}}</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{item.product_idProduct.offer_price}}</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{item.product_idProduct.selling_price}}</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">{{item.quantity}}</td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;" align="center">-</td>
+        
+      </tr>
+      {% endfor %}
+
+      <tr>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>Total Bill:</b></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>-</b></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>{{data.totalOfferPrice}}</b></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>{{data.totalPrice}}</b></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>-</b></td>
+        <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center"><b>{{data.order.total_amount}}</b></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr> 
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px;" colspan="2">Please Note:</td>
+  </tr>
+  <tr>
+    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" colspan="2">Dear Consumer, the bill payment will reflect in next 48 hours in your account. Please  contact our customer support for any queries regarding this order.</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px;" colspan="2">Thank you for using our service</td>
+  </tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" colspan="2" align="center">(This is computer generated receipt and does not require physical signature.) </td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

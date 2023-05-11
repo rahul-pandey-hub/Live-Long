@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{%load static%}
+{% block content %}
+<body style="background-color:black;">
+    <main>
+        <section id="form-container">
+
+            
+
+            <div id="welcome-message">
+                <h2 style="color: #fff">Welcome to Live<span>Long</span></h2>
+                <p>A Medical Appointment platform made just for you!</p>
+            </div>
+
+            <form action="/sub1" method="post" enctype="multipart/form-data">
+                <div class="form-field">
+                    <label>code</label>
+                    <input type="text" name="code" placeholder="Enter room code..."/>
+                </div>
+                
+                <div class="form-field">
+                    <input type="file" name="upload" accept="image/*">
+                </div>
+
+                <div class="form-field">
+                    <input type="submit"  value="Join Room">
+                </div>
+            </form>
+        </section>
+    </main>
+<body>
+    
+    {% endblock content %}

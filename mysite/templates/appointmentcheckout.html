@@ -1,0 +1,360 @@
+{% extends 'index.html' %}
+  {% load static %}
+{% block content %}
+<script src="https://www.paypal.com/sdk/js?client-id=AZdhUZs01PvFqyCgwoJdLvY7F0qPi3acJYbata5Y-oAUJOjVgcph3DKXfBl7iJY5Lb77UQMU9Dfd_Oq-&currency=USD"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="/patient">Live<span>Long</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+       
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="/patient  " class="nav-link">Home</a></li>
+
+              
+              <li class="nav-item" ><a href="doc" class="nav-link">Doctors</a></li>
+              <li class="nav-item"><a href="/User_profile" class="nav-link icon-user"><br><span>Profile</span></a></li>
+              <li class="nav-item"><a href="/my-orders" class="nav-link">My orders</a></li>
+              {% comment %} <li class="nav-item"><a href="/cart.html" class="nav-link icon-shopping-cart" class="nav-link"></a></li> {% endcomment %}
+              <li class="nav-item cta  text-dark"><a href="appointment" class="nav-link"><span class="text-dark"> Join Appointment</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="home-slider owl-carousel">
+        <div
+          class="slider-item bread-item"
+          style="background-image: url({% static 'images/bg_1.jpg'%});"
+          data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container" data-scrollax-parent="true">
+            <div class="row slider-text align-items-end">
+              <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                <p
+                  class="breadcrumbs"
+                  data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"
+                >
+                  <span class="mr-2"><a href="/patient">Home</a></span>
+                  <span>Services</span>
+                </p>
+                <h1
+                  class="mb-3"
+                  data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+                >
+                  Appointment Checkout Section
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+<!-- header section end -->
+<div class="container mt-5">
+  {% comment %} {% url 'place-order' %} {% endcomment %}
+    <form action="{% url 'place-order' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-7" style="margin-bottom: 10px;">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1>Appointment Summary</h1>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 mt-3">
+                                {% if patient_name %}
+                                <label style="font-size: 2rem;font-weight: bolder;">First Name</label>
+                                <input type="text" class="form-control" name="patient_name" placeholder="First Name" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{patient_name}}" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">First Name</label>
+                                <input type="text" class="form-control" name="fname" placeholder="First Name" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" required>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                {% if id %}
+                                <label style="font-size: 2rem;font-weight: bolder;">ID of Appointment</label>
+                                <input type="text" class="form-control" name="id" placeholder="First Name" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{id}}" required>
+                                {% comment %} {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">First Name</label>
+                                <input type="text" class="form-control" name="fname" placeholder="First Name" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" required> {% endcomment %}
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mt-4">
+                                {% if emailpatient %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Email</label>
+                                <input type="email" class="form-control" name="emailpatient" placeholder="Email" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{emailpatient}}" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Email" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" required>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                {% if phone_patient %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Phone no</label>
+                                <input type="number" class="form-control" name="phone_patient" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{phone_patient}}" onkeypress="if(this.value.length == 10) return false;" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Phone no</label>
+                                <input type="number" class="form-control" name="mobile" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" pattern="[7-9]{1}[0-9]{9}" onkeypress="if(this.value.length == 10) return false;" required>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                {% if appointment_time %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Time</label>
+                                <input type="text" class="form-control" name="appointment_time" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{appointment_time}}" onkeypress="if(this.value.length == 10) return false;" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Phone no</label>
+                                <input type="number" class="form-control" name="mobile" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" pattern="[7-9]{1}[0-9]{9}" onkeypress="if(this.value.length == 10) return false;" required>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                {% if time %}
+                                <label style="font-size: 2rem;font-weight: bolder;">End in</label>
+                                <input type="number" class="form-control" name="time" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{time}}" onkeypress="if(this.value.length == 10) return false;" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Phone no</label>
+                                <input type="number" class="form-control" name="mobile" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" pattern="[7-9]{1}[0-9]{9}" onkeypress="if(this.value.length == 10) return false;" required>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                {% if appointment_Date %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Appointment Date</label>
+                                <input type="text" class="form-control" name="appointment_Date" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" value="{{appointment_Date}}" onkeypress="if(this.value.length == 10) return false;" required readonly>
+                                {% else %}
+                                <label style="font-size: 2rem;font-weight: bolder;">Phone no</label>
+                                <input type="number" class="form-control" name="mobile" placeholder="Mobile" style="font-size: 1.5rem; padding: 20px 5px 20px 5px;" pattern="[7-9]{1}[0-9]{9}" onkeypress="if(this.value.length == 10) return false;" required>
+                                {% endif %}
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body card-data">
+                        
+                        <hr>
+                        {% if id %}
+                        {% comment %} <table class="table table-stripeds table-bordered">
+                            <thead>
+                                <tr style="font-size: 1.5rem;">
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cartproducts %}
+                                <tr style="font-size: 1.5rem;">
+                                    <td>
+                                        <img src="{{item.product.product_image.url}}" alt="myImage" height="50px" width="50px" class="mr-2">
+                                        {{item.product.title}}
+                                    </td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.product.selling_price}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> {% endcomment %}
+                        <div style="display:flex; justify-content:center">
+                            <div>
+                              {% if image %}
+                              <img id="a" src="{{image}}" alt="" height="150" width="150" style="border-radius: 5%;">
+                              {% else %}
+                              <img id="a" src="{% static 'images/doc.png'%}" height="150" width="150">
+                              {% endif %}
+                            </div>
+                            
+                        </div>
+                        <div style="margin-top:6px">
+                            <span style="    font-size: 30px;
+                            color: black;" name="doc_name"> Dr. {{doc_name}}</span><br>
+                            <span name="emaildoc">{{emaildoc}}</span><br>
+                            <span name="phone_doc">{{phone_doc}}</span>
+                        </div>
+                        <hr>
+                        
+                        
+                        <hr>
+                        <h3 class="grandTotal1">Grand Total
+                            <span class="float-right"> Rs <span class="grandTotal" id='a1'>{{price}}</span></span>
+                        </h3>
+                        <input type="hidden" name="payment_mode" value="COD">
+                        <div class="mt-3">
+                            
+                            <br><br>
+                            <div id="paypal-button-container"></div>
+                        </div>
+                        {% else %}
+                        <h3>Your cart is empty</h3>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'js/checkout.js' %}"></script>
+    
+ <script>
+  {% comment %} a=Document.getElementByClass('grandTotal2').value()
+  console.log(a) {% endcomment %}
+    paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+        },
+        onClick : function(data,actions){
+          var fname = $("[name='patient_name']").val();
+          var lname = $("[name='id']").val();
+          var email = $("[name='emailpatient']").val();
+          var mobile = $("[name='phone_patient']").val();
+          var time = $("[name='time']").val();
+          var appointment_time = $("[name='appointment_time']").val();
+          var appointment_Date = $("[name='appointment_Date']").val();
+          var a=$("#a1").text()
+          var token = $("[name='csrfmiddlewaretoken']").val();
+  
+          if(fname == "" || lname == "" || email == "" || mobile == ""){
+              swal("Error", "Please fill all details!", "error");
+              return false;
+          }else{
+              return true;
+          }
+        },
+        createOrder: (data, actions) => {
+          var a=document.getElementById('a1').innerText
+          return actions.order.create({
+           
+            purchase_units: [{
+              
+              amount: {
+                value: a//'{{total_price | stringformat:"d"}}' // Can also reference a variable or function
+              }
+            }]
+          });
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(function(orderData) {
+            // Successful capture! For dev/demo purposes:
+          //   console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+          //   const transaction = orderData.purchase_units[0].payments.captures[0];
+          //   alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            var id = $("[name='id']").val();
+            var emailpatient = $("[name='emailpatient']").val();
+            var emaildoc = $("[name='emaildoc']").text();
+            var phone_patient = $("[name='phone_patient']").val();
+            var phone_doc = $("[name='phone_doc']").text();
+           
+          var time = $("[name='time']").val();
+          var appointment_time = $("[name='appointment_time']").val();
+          var patient_name = $("[name='patient_name']").val();
+          var doc_name = $("[name='doc_name']").text();
+          var price = $("#a1").text();   
+          var appointment_Date = $("[name='appointment_Date']").val();
+            data = {
+                "id":id,
+                "emailpatient":emailpatient,
+                "emaildoc": emaildoc,
+                "phone_patient":phone_patient,
+                "phone_doc":phone_doc,
+                "appointment_time":appointment_time,
+                "doc_name":doc_name,
+                "patient_name":patient_name,
+                "time":time,
+                "price":price,
+                "appointment_Date":appointment_Date,
+              
+            }
+            $.ajax({
+              method:"POST",
+              url: "/appointmentconfi",
+              data: data,
+              success: function (response) {
+                swal("congratulations!",response.status,"success").then((value)=>{
+                 window.location.href='/patient'
+                
+               });
+               }
+              
+            });
+          });
+          
+        }
+        
+      }).render('#paypal-button-container');
+    </script> 
+    {% comment %} <script>
+      paypal.Buttons({
+        // Order is created on the server and the order id is returned
+        createOrder() {
+          return fetch("/my-server/create-paypal-order", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            // use the "body" param to optionally pass additional order information
+            // like product skus and quantities
+            body: JSON.stringify({
+              cart: [
+                {
+                  sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
+                  quantity: "YOUR_PRODUCT_QUANTITY",
+                },
+              ],
+            }),
+          })
+          .then((response) => response.json())
+          .then((order) => order.id);
+        },
+        // Finalize the transaction on the server after payer approval
+        onApprove(data) {
+          return fetch("/my-server/capture-paypal-order", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              orderID: data.orderID
+            })
+          })
+          .then((response) => response.json())
+          .then((orderData) => {
+            // Successful capture! For dev/demo purposes:
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  window.location.href = 'thank_you.html';
+          });
+        }
+      }).render('#paypal-button-container');
+    </script> {% endcomment %}
+    {% comment %} <script>
+      alertify.set('notifier','position', 'top-right');
+      {% for msg in messages %}
+      {% if msg.tags == 'success' %}
+          alertify.success('{{msg}}');
+      {% else %}
+          alertify.error('{{msg}}');
+      {% endif %}
+      {% endfor %}
+        </script> {% endcomment %}
+{% endblock content %}

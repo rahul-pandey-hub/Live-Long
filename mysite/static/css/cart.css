@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none !important;
+  transition: all 0.2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: #ed0d89;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+}
+
+section {
+  padding: 5rem 1rem;
+}
+.heading {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    text-transform: capitalize;
+    color: #222;
+}
+  
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #ed0d89;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9%;
+}
+.header.active {
+  padding: 0 0;
+  background: #ed0d89;
+}
+.header .logo {
+  font-size: 20px;
+  color: #fff;
+  font-weight: bolder;
+  position: relative;
+  top: -3px;
+}
+.header .nav ul {
+  list-style: none;
+}
+.header .nav ul li {
+  position: relative;
+  float: left;
+}
+.header .nav ul li:hover > ul {
+  display: initial;
+}
+.header .nav ul li a {
+  font-size: 20px;
+  padding: 20px;
+  color: #fff;
+  display: block;
+}
+.header .nav ul li a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 0.5rem;
+}
+.header .nav ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #ed0d89;
+  display: none;
+}
+.header .nav ul li ul li {
+  width: 100%;
+  border-top: 1px solid #000;
+  font-size: 20px;
+}
+.header .icons div {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.header #cart-btn {
+  position: relative;
+  top: -7px;
+}
+.header #menu-btn {
+  display: none;
+}
+.alertify-notifier .ajs-message {
+  font-size: 16px;
+  color: white;
+}

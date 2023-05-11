@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    {% load static %}
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- iconscout cdn link -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static '/css/user_profile.css' %}">
+</head>
+<body style="background-color:black">
+
+<div class="update-profile">
+    <form action="/Update_docinfo" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% if image %}
+        <img src="{{image}}" alt="">
+        {% else %}
+        <img src="{% static '/images/doc.png' %}" alt="">
+        {% endif %}
+       
+        <div class="flex">
+            <div class="inputBox">
+               
+                <span>First Name </span>
+                <input type="text" name="fname" id="" class="box" value="{{first_name}}">
+                
+                <span>Last Name </span>
+                <input type="text" name="lname" id="" class="box" value="{{last_name}}">
+
+                <span>Select Specialization </span>
+                <select class="box" name="select" required>
+                    {%if select %}
+                    <option  >{{select}}</option>
+                    {%else%}
+                    <option class="hidden" value="" selected disabled>Select Specialization</option>
+                    {%endif%}
+                        <option >Anaesthesia</option>
+                        <option >Andrology</option>
+                        <option >Audiology &amp; Speech Therapy</option>
+                        <option >Ayurvedic</option>
+                        <option >Cardiologist</option>
+                        <option >Dentist</option>
+                        <option >Dermatologist</option>
+                        <option >Diabetologist</option>
+                        <option >Dietician</option>
+                        <option >Endocrinologist</option>
+                        <option >ENT</option>
+                        <option >Gastroenterologist</option>
+                        <option >Gynaecologist</option>
+                        <option >Haematology</option>
+                        <option >Homoeopathy</option>
+                        <option >Medicine</option>
+                        <option >Nephrologist</option>
+                        <option >Neurologist</option>
+                        <option >Neurosurgeon</option>
+                        <option >Nutritionist</option>
+                        <option >Ophthalmologist</option>
+                        <option >Paediatrics</option>
+                        <option >Pathologist</option>
+                        <option >Pediatric Cardiac Surgeon</option>
+                        <option >Physiotherapist</option>
+                        <option >Plastic Surgery</option>
+                        <option >Psychiatrist</option>
+                        <option >Pulmonary Medicine</option>
+                        <option >Radiologist</option>
+                        <option >Rheumatologist</option>
+                        <option >Sexologist</option>
+                        <option >Skin</option>
+                        <option >Somnologist</option>
+                        <option >Surgeon</option>
+                        <option >Urologist</option>
+                </select>
+                
+                <span>Enter your price(rupess) for 15 min appointment</span>
+                <input type="text" name="price" id="" class="box" value="{{price}}">
+                <span>Enter your degree </span>
+                <input type="text" name="degree" id="" class="box" value="{{dgree}}">
+               
+            </div>
+            <div class="inputBox">
+                <span>Email </span>
+                <input type="text" name="email" id="" class="box" value="{{email}}" readonly>
+                <span>Mobile No </span>
+                <input type="text" name="phone" id="" class="box" value="{{phone}}">
+                <span>Choose Image </span>
+                <input type="file" name='upload'  id="" class="box" accept="image/*" style="padding: 9px 14px;">
+                <span>Address </span>
+                <textarea type="text"  rows="3" cols="100" class="box" placeholder="Address *" value="" name="address">{{address}}</textarea>
+            </div>
+           
+        </div>
+        <input type="submit" value="Update Profile" name="update_profile" class="btn">
+        <a href="/doctor" class="delete-btn">Go Home Page</a>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</body>
+</html>

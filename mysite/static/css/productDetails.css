@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none !important;
+  transition: all 0.2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: #512a10;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+}
+
+
+.heading {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    text-transform: capitalize;
+    color: #222;
+}
+  
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #512a10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9%;
+}
+.header.active {
+  padding: 0 0;
+  background: #000000;
+}
+.header .logo {
+  font-size: 20px;
+  color: #fff;
+  font-weight: bolder;
+  position: relative;
+  top: -3px;
+}
+.header .nav ul {
+  list-style: none;
+}
+.header .nav ul li {
+  position: relative;
+  float: left;
+}
+.header .nav ul li:hover > ul {
+  display: initial;
+}
+.header .nav ul li a {
+  font-size: 20px;
+  padding: 20px;
+  color: #fff;
+  display: block;
+}
+.header .nav ul li a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 0.5rem;
+}
+.header .nav ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #512a10;
+  display: none;
+}
+.header .nav ul li ul li {
+  width: 100%;
+  border-top: 1px solid #000;
+  font-size: 20px;
+}
+.header .icons div {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.header #cart-btn {
+  position: relative;
+  top: -7px;
+}
+.header #menu-btn {
+  display: none;
+}
+.review-rating-form{
+  position: fixed;
+  top: 0;left: 0;
+  z-index: 1100;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, .8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn .2s linear;
+}
+.review-rating-form.active{
+  display: flex;
+}
+.review-rating-form form{
+  width: 50rem;
+  padding: 4rem;
+  background: white;
+  position: relative;
+}
+#close-review-rating-form{
+  position: absolute;
+  top: 4rem;left: 91rem;
+  font-size: 3rem;
+  cursor: pointer;
+  color: white;
+}
+#close-review-rating-form:hover{
+  transform: rotate(90deg);
+}
+.review-rating-form form .logo{
+  font-size: 2.5rem;
+  color: #512a10;
+  font-weight: bolder;
+}
+.review-rating-form form h3{
+  padding: 1rem 0;
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: black;
+}
+.review-btn{
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  display: inline-block;
+  border: .1rem solid #512a10;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  width: 100%;
+}
+.review-btn:hover{
+  background-color: #512a10;
+  color: white;
+}
+.rate > input{
+  display: none;
+}
+.rate{
+  display: inline-block;
+  border: 0;
+}
+.rate > label{
+  float: right;
+}
+.rate > label:before{
+  display: inline-block;
+  font-size: 1.1rem;
+  content: "\f005";
+  font-family: FontAwesome;
+  font-size: 2rem;
+  margin: 0;
+  padding: .2rem 1rem 0 0;
+  cursor: pointer;
+}
+.rate .half:before{
+  content: "\f089";
+  position: absolute;
+  padding-right: 0;
+}
+input:checked ~ label, label:hover ~ label{
+  color: #ffb503;
+}
+input:checked + label:hover, input:checked ~ label:hover,input:checked ~ label:hover ~ label{
+  color: #cc9000;
+}
+.alertify-notifier .ajs-message {
+  font-size: 16px;
+  color: white;
+}

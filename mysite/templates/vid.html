@@ -1,0 +1,33 @@
+{% extends 'index3.html' %}
+{%load static%}
+{% block content2 %}
+<body style="background-color:black;">
+    <main>
+        <section id="form-container">
+
+            
+
+            <div id="welcome-message">
+                <h2 style="color: #fff">Welcome to Live<span>Long</span></h2>
+                <p>A Medical Appointment platform made just for you!</p>
+            </div>
+
+            <form action="/sub" method="get">
+                <div class="form-field">
+                    <label>code</label>
+                    <input type="text" name="room" placeholder="Enter room code..."/>
+                </div>
+                {% if messages %}
+                {%for message in messages %}
+                <a style="color: red; font-size: 16px; padding-left: 5px;">{{message}}</a>
+                {% endfor %}
+                {%endif%}
+                <div class="form-field">
+                    <input type="submit"  value="Join Room">
+                </div>
+            </form>
+        </section>
+    </main>
+<body>
+    
+    {% endblock content2 %}

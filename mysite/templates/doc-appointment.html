@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+  {% load static %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="/patient">Live<span>Long</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="/patient  " class="nav-link">Home</a></li>
+              
+              <li class="nav-item"><a href="/doc_profile" class="nav-link icon-user"><br><span>Profile</span></a></li>
+              
+              <li class="nav-item cta  text-dark"><a href="/appointment" class="nav-link"><span class="text-dark"> Join Appointment</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="home-slider owl-carousel">
+        <div
+          class="slider-item bread-item"
+          style="background-image: url({% static 'images/bg_1.jpg'%});"
+          data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container" data-scrollax-parent="true">
+            <div class="row slider-text align-items-end">
+              <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                <p
+                  class="breadcrumbs"
+                  data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"
+                >
+                  <span class="mr-2"><a href="/patient">Home</a></span>
+                  <span>Services</span>
+                </p>
+                <h1
+                  class="mb-3"
+                  data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+                >
+                  My Appointmet Section
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- header section end -->
+<section>   
+    
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h1>My Appointment</h1>
+                </div>
+                <div class="card-body card-data" style="color:black">
+                    {% if userOrderData %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="font-weight: bolder; font-size: 1.8rem;">Patients Name    </th>
+                                <th style="font-weight: bolder; font-size: 1.8rem;">Appointment ID</th>
+                                <th style="font-weight: bolder; font-size: 1.8rem;">Total Price</th>
+                                <th style="font-weight: bolder; font-size: 1.8rem;">Time</th>
+                                <th style="font-weight: bolder; font-size: 1.8rem;">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in userOrderData %}
+                            {% if item.doctor_remove == 0%}
+                            <tr class="product_data">
+                                {% csrf_token %}
+                                <input type="hidden" class="order_tracking_no" value="{{item.id}}">
+                                <td style="font-weight: 500; font-size: 1.5rem;">{{item.patient_name}}</td>
+                                <td style="font-weight: 500; font-size: 1.5rem;">{{item.id}}</td>
+                                <td style="font-weight: 500; font-size: 1.5rem;">{{item.price}}</td>
+                                <td style="font-weight: 500; font-size: 1.5rem;">{{item.appointment_time}}</td>
+                                <td style="font-weight: 500; font-size: 1.5rem;">{{item.appointment_Date}}</td>
+                                <td>
+                                    
+                                    
+                                    
+                                    
+                                    <button class="btn btn-danger delete-order" style="font-size: 1.5rem;margin-top:5px">Remove</button>
+                                    
+                                    {% comment %} {% if item.order_status == "Delivered" %}
+                                    <a href="#" class="btn btn-primary mr-3" style="font-weight: bolder; font-size: 1.5rem;">Feedback</a>
+                                    {% endif %} {% endcomment %}
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% else %}
+                        <h3>No Appointmetn Placed.!</h3>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<script src="{% static 'js/alertify.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.6.3.min.js' %}"></script>
+<script type="text/javascript">
+
+$(document).on("click", '.delete-order', function(e){
+    e.preventDefault();
+
+    let confirmation = confirm("Are you sure you want to cancel order?");
+
+    var order_id = $(this).closest('.product_data').find('.order_tracking_no').val();
+    
+
+    if(confirmation){
+        $.ajax({
+            method: "POST",
+            url: "/canceldocappointment",
+            data: {
+                'id':order_id,
+                
+            },
+            success: function (response) {
+                alertify.set('notifier','position', 'top-right');
+                $('.card-data').load(location.href + " .card-data");
+                if (response.status) {
+                    alertify.success(response.status);
+                }else{
+                    alertify.error(response.data);
+                }
+            }
+        });
+    }
+
+});
+</script>
+{% endblock content %}
+      
